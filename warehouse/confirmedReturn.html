@@ -23,7 +23,7 @@
     <meta property="twitter:description" cosntent="TODO">
     <meta property="twitter:image" content="TODO">
 
-    <title>Magazzino - Late Request</title>
+    <title>Magazzino - Confirmed Return</title>
     <link rel="shortcut icon" href="TODO" />
     <link rel="icon" href="assets/img/logo-salotto.png">
     <!-- CSS -->
@@ -31,43 +31,44 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body id="lateRequest">
+<body id="confirmedReturn">
 
     <div class="container" style="height: 100vh;">
         <div class="row content">
-            <div class="col-7"><img class="image" src="\assets\img\late-request.svg" alt="" draggable='false'></div>
             <div class="col-5">
                 <div class="row">
                     <div class="col-12">
-                        <h6 class="content-header">Tempus fugit</h6>
+                        <h6 class="content-header">Conferma restituzione</h6>
                         <hr class="content-line">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <h1 class="content-title">Come passa il tempo quando ci si diverte!</h1>
+                        <h1 class="content-title">Ora tocca a te.</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <p class="content-description">
-                            Sembra che il tuo ordine sia stato già consegnato, ti preghiamo di <b> metterti in contatto con un nostro operatore</b>. <br> Hai controllato bene dappertutto?
+                            Hai scelto il tuo nuovo prodotto: ${nomeprodotto}, è necessario che tu ci <b>rispedisca quello che ti è arrivato</b>, cosicché possiamo verificare che esso sia <b>realmente danneggiato</b> e spedirti quello nuovo. Provvedi
+                            alla spedizione dell’articolo danneggiato entro <b>14 giorni</b> al seguente <b>indirizzo e destinatario</b>.
                         </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.html'">
-                            <span><b>Ah ok scusate</b></span>
-                        </button>
+                    <div class="col-12">
+                        <h6 class="content-header"><b>Indirizzo:</b></h6>
+                        <h3 class="content-title">Via Gatta Melata 65, Mestre (VE)</h3>
                     </div>
                 </div>
-                <div class="row content-footer">
+                <div class="row">
                     <div class="col-12">
-
+                        <h6 class="content-header"><b>Destinatario:</b></h6>
+                        <h3 class="content-title">Salotto S.P.A</h3>
                     </div>
                 </div>
             </div>
+            <div class="col-7"><img class="image" src="\assets\img\confirmed-return.svg" alt="" draggable='false'></div>
         </div>
     </div>
     <!-- JS -->
