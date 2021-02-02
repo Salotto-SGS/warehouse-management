@@ -1,20 +1,21 @@
 (() => {
-    $('#complaintChoice #missing-card').hover(() => {
-        $('#complaintChoice #missing-img').css("filter", "invert(99%) sepia(0%) saturate(87%) hue-rotate(189deg) brightness(120%) contrast(100%)");
+    $('#damagedOrderChoice #money').click(() => {
+        $('#damagedOrderChoice #money').css("background-color", "#3F3D56");
+        $('#damagedOrderChoice #money').css("color", "#FFFFFF");
+        $('#damagedOrderChoice #product').css("background-color", "#FFFFFF");
+        $('#damagedOrderChoice #product').css("color", "#8B8B8B");
+        $("#product-check").css("display", "none");
+        $("#money-check").css("display", "inline");
+        $("#submit-damagedOrderChoice").css("display", "inline");
     });
-    $('#complaintChoice #damaged-card').hover(() => {
-        $('#complaintChoice #damaged-img').css("filter", "invert(99%) sepia(0%) saturate(87%) hue-rotate(189deg) brightness(120%) contrast(100%)");
+    $('#damagedOrderChoice #product').click(() => {
+        $('#damagedOrderChoice #product').css("background-color", "#3F3D56");
+        $('#damagedOrderChoice #product').css("color", "#FFFFFF");
+        $('#damagedOrderChoice #money').css("background-color", "#FFFFFF");
+        $('#damagedOrderChoice #money').css("color", "#8B8B8B");
+        $("#money-check").css("display", "none");
+        $("#product-check").css("display", "inline");
+        $("#submit-damagedOrderChoice").css("display", "inline");
     });
-    $('#complaintChoice #wrong-card').hover(() => {
-        $('#complaintChoice #wrong-img').css("filter", "invert(99%) sepia(0%) saturate(87%) hue-rotate(189deg) brightness(120%) contrast(100%)");
-    });
-    $('#complaintChoice #missing-card').mouseout(() => {
-        $('#complaintChoice #missing-img').css("filter", "none");
-    });
-    $('#complaintChoice #damaged-card').mouseout(() => {
-        $('#complaintChoice #damaged-img').css("filter", "none");
-    });
-    $('#complaintChoice #wrong-card').mouseout(() => {
-        $('#complaintChoice #wrong-img').css("filter", "none");
-    });
+
 })();
