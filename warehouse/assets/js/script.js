@@ -37,4 +37,17 @@
         $("#submit-wrongOrderChoice").css("display", "inline");
     });
 
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('code');
+    $('#missingDeliveryForm').click(() => {
+        window.location.href = '/warehouse/complaintChoice.php?code=' + myParam + '&type=missing_product';
+    });
+    $('#damagedArticleForm').click(() => {
+        window.location.href = '/warehouse/complaintChoice.php?code=' + myParam + '&type=damaged_product'
+    });
+    $('#wrongArticleForm').click(() => {
+        window.location.href = '/warehouse/complaintChoice.php?code=' + myParam + '&type=wrong_product'
+    });
+
 })();
