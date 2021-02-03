@@ -1,3 +1,109 @@
+<?php
+
+    include './config/Database.php';
+    include './models/Order.php';
+    $database = new Database();
+    $code = $_GET['code'];
+    $type = $_GET['type'];
+    $phrase = '';
+    if (isset($type) && $type == "refund") {
+        $phrase = 'Hai scelto di ricevere un <b>rimborso</b>, è necessario che tu ci <b>rispedisca</b> l’articolo errato, cosicché possiamo verificare che esso sia realmente sbagliato ed effettuare il rimborso. Provvedi alla spedizione del vecchio articolo <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+    } else if (isset($type) && $type == "change_version") {
+        $phrase = 'Hai scelto il tuo <b>nuovo prodotto</b>, è necessario che tu ci <b>rispedisca</b> quello che ti è arrivato, cosicché possiamo verificare che esso sia realmente sbagliato e spedirti quello nuovo. Provvedi alla spedizione dell’articolo errato <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+    } else if (isset($type) && $type == "money") {
+        $phrase = 'Hai scelto di ricevere un <b>rimborso</b>, è necessario che tu ci <b>rispedisca</b> l’articolo danneggiato, cosicché possiamo verificare che esso sia realmente danneggiato ed effettuare il rimborso. Provvedi alla spedizione dell’articolo danneggiato <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+    } else if (isset($type) && $type == "product") {
+        $phrase = 'Hai scelto il tuo <b>nuovo prodotto</b>, è necessario che tu ci <b>rispedisca</b> quello che ti è arrivato, cosicché possiamo verificare che esso sia realmente danneggiato e spedirti quello nuovo. Provvedi alla spedizione dell’articolo danneggiato <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+    }
+    if (!empty($code)) {
+        $db = $database->connect();
+        $stmt = $db->prepare("SELECT COUNT(*) as total FROM `order` WHERE code=:userCode");
+        $stmt->bindParam(':userCode', $code, PDO::PARAM_STR);
+        $stmt->execute();
+        // Check if any categories
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if($row['total'] == '1'){
+                $type = $_GET['type'];
+                $goOn = $_GET['goon'];
+                if($goOn == 'true') {
+                    $delayReturn = rand(0,1) == 1; //TODO 
+                    $valid = rand(0,1) == 1; //TODO
+                
+                
+                    //echo isset($type) ;
+                    if (isset($type) && $type == "refund") {
+                        $phrase = 'Hai scelto di ricevere un <b>rimborso</b>, è necessario che tu ci <b>rispedisca</b> l’articolo errato, cosicché possiamo verificare che esso sia realmente sbagliato ed effettuare il rimborso. Provvedi alla spedizione del vecchio articolo <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+                        if($delayReturn){
+                            $db = $database->connect();
+                            $stmt = $db->prepare("UPDATE `order` SET idStatus = 7 WHERE code = :user_Code");
+                            $stmt->bindParam(':user_Code', $code, PDO::PARAM_STR);
+                            $stmt->execute();
+                            if($valid){
+                                header('Location: refund.php');
+                            } else {
+                                header('Location: invalidComplaint.php');
+                            }
+                        } else {
+                            header('Location: lateReturn.php');
+                        }
+                    } else if (isset($type) && $type == "change_version") {
+                        $phrase = 'Hai scelto il tuo <b>nuovo prodotto</b>, è necessario che tu ci <b>rispedisca</b> quello che ti è arrivato, cosicché possiamo verificare che esso sia realmente sbagliato e spedirti quello nuovo. Provvedi alla spedizione dell’articolo errato <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+                        if($delayReturn){
+                            $db = $database->connect();
+                            $stmt = $db->prepare("UPDATE `order` SET idStatus = 7 WHERE code = :user_Code");
+                            $stmt->bindParam(':user_Code', $code, PDO::PARAM_STR);
+                            $stmt->execute();
+                            if($valid){
+                                header('Location: verifiedComplaint.php');
+                            } else {
+                                header('Location: invalidComplaint.php');
+                            }
+                        } else {
+                            header('Location: lateReturn.php');
+                        }
+                    } else if (isset($type) && $type == "money") {
+                        $phrase = 'Hai scelto di ricevere un <b>rimborso</b>, è necessario che tu ci <b>rispedisca</b> l’articolo danneggiato, cosicché possiamo verificare che esso sia realmente danneggiato ed effettuare il rimborso. Provvedi alla spedizione dell’articolo danneggiato <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+                        if($delayReturn){
+                            $db = $database->connect();
+                            $stmt = $db->prepare("UPDATE `order` SET idStatus = 7 WHERE code = :user_Code");
+                            $stmt->bindParam(':user_Code', $code, PDO::PARAM_STR);
+                            $stmt->execute();
+                            if($valid){
+                                header('Location: refund.php');
+                            } else {
+                                header('Location: invalidComplaint.php');
+                            }
+                        } else {
+                            header('Location: lateReturn.php');
+                        }
+                    } else if (isset($type) && $type == "product") {
+                        $phrase = 'Hai scelto il tuo <b>nuovo prodotto</b>, è necessario che tu ci <b>rispedisca</b> quello che ti è arrivato, cosicché possiamo verificare che esso sia realmente danneggiato e spedirti quello nuovo. Provvedi alla spedizione dell’articolo danneggiato <b>entro 14 giorni</b> al seguente indirizzo e destinatario.';
+                        if($delayReturn){
+                            $db = $database->connect();
+                            $stmt = $db->prepare("UPDATE `order` SET idStatus = 7 WHERE code = :user_Code");
+                            $stmt->bindParam(':user_Code', $code, PDO::PARAM_STR);
+                            $stmt->execute();
+                            if($valid){
+                                header('Location: verifiedComplaint.php');
+                            } else {
+                                header('Location: invalidComplaint.php');
+                            }
+                        } else {
+                            header('Location: lateReturn.php');
+                        }
+                    }
+                }
+            } else {
+                header('Location: invalidDeliveryCode.php');
+            }
+        }
+    }
+    
+    
+    
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -50,21 +156,27 @@
                 <div class="row">
                     <div class="col-12">
                         <p class="content-description">
-                            Hai scelto il tuo nuovo prodotto: ${nomeprodotto}, è necessario che tu ci <b>rispedisca quello che ti è arrivato</b>, cosicché possiamo verificare che esso sia <b>realmente danneggiato</b> e spedirti quello nuovo. Provvedi
-                            alla spedizione dell’articolo danneggiato entro <b>14 giorni</b> al seguente <b>indirizzo e destinatario</b>.
-                        </p>
+                            <?php echo $phrase; ?>
+                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <h6 class="content-header"><b>Indirizzo:</b></h6>
-                        <h3 class="content-title">Via Gatta Melata 65, Mestre (VE)</h3>
+                        <h3 class="content-title">Via Gattamelata 65, Mestre (VE)</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <h6 class="content-header"><b>Destinatario:</b></h6>
                         <h3 class="content-title">Salotto S.P.A</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button class="button btn btn-light btn-secondary" id="confirmed-return">
+                            <span><b>Ricevuto!</b></span>
+                        </button>
                     </div>
                 </div>
             </div>

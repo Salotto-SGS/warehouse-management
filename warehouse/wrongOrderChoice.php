@@ -61,7 +61,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12">
-                    <button id="submit-wrongOrderChoice" style="display: none;" type="button" class="btn col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-6 float-right" onclick=""><b>Avanti</b></button>
+                    <button id="submit-wrongOrderChoice" style="display: none;" type="button" class="btn col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-6 float-right"><b>Avanti</b></button>
                 </div>
             </div>
         </div>

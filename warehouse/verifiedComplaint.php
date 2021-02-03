@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-12">
                         <p class="content-description">
-                            Il tuo ordine <b>danneggiato</b> è stato <b>validato</b>, provvederemo quanto prima alla <b>spedizione</b> del tuo <b>nuovo ordine</b>.
+                            Il tuo ordine è stato <b>validato</b>, provvederemo quanto prima alla <b>spedizione</b> del tuo <b>nuovo ordine</b>.
                         </p>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.html'">
+                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.php'">
                             <span><b>Torna alla home</b></span>
                         </button>
                     </div>

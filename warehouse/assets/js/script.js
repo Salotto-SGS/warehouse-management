@@ -7,6 +7,8 @@
         $("#product-check").css("display", "none");
         $("#money-check").css("display", "inline");
         $("#submit-damagedOrderChoice").css("display", "inline");
+        $('#damagedOrderChoice #money').attr("selected", "selected");
+        $('#damagedOrderChoice #product').removeAttr("selected");
     });
     $('#damagedOrderChoice #product').click(() => {
         $('#damagedOrderChoice #product').css("background-color", "#3F3D56");
@@ -16,6 +18,8 @@
         $("#money-check").css("display", "none");
         $("#product-check").css("display", "inline");
         $("#submit-damagedOrderChoice").css("display", "inline");
+        $('#damagedOrderChoice #money').removeAttr("selected");
+        $('#damagedOrderChoice #product').attr("selected", "selected");
     });
 
     $('#wrongOrderChoice #money').click(() => {
@@ -26,6 +30,8 @@
         $("#product-check").css("display", "none");
         $("#money-check").css("display", "inline");
         $("#submit-wrongOrderChoice").css("display", "inline");
+        $('#wrongOrderChoice #money').attr("selected", "selected");
+        $('#wrongOrderChoice #product').removeAttr("selected");
     });
     $('#wrongOrderChoice #product').click(() => {
         $('#wrongOrderChoice #product').css("background-color", "#3F3D56");
@@ -35,19 +41,44 @@
         $("#money-check").css("display", "none");
         $("#product-check").css("display", "inline");
         $("#submit-wrongOrderChoice").css("display", "inline");
+        $('#wrongOrderChoice #money').removeAttr("selected");
+        $('#wrongOrderChoice #product').attr("selected", "selected");
     });
 
 
     const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('code');
+    const code = urlParams.get('code');
+    const type = urlParams.get('type');
     $('#missingDeliveryForm').click(() => {
-        window.location.href = '/warehouse/complaintChoice.php?code=' + myParam + '&type=missing_product';
+        window.location.href = '/warehouse/complaintChoice.php?code=' + code + '&type=missing_product';
     });
     $('#damagedArticleForm').click(() => {
-        window.location.href = '/warehouse/complaintChoice.php?code=' + myParam + '&type=damaged_product'
+        window.location.href = '/warehouse/complaintChoice.php?code=' + code + '&type=damaged_product'
     });
     $('#wrongArticleForm').click(() => {
-        window.location.href = '/warehouse/complaintChoice.php?code=' + myParam + '&type=wrong_product'
+        window.location.href = '/warehouse/complaintChoice.php?code=' + code + '&type=wrong_product'
+    });
+
+
+    $("#submit-wrongOrderChoice").click(() => {
+        if ($("#wrongOrderChoice #money").attr('selected') == 'selected') {
+            window.location.href = '/warehouse/confirmedReturn.php?code=' + code + '&type=change_version&goon=false'
+        } else {
+            window.location.href = '/warehouse/confirmedReturn.php?code=' + code + '&type=refund&goon=false'
+        }
+    });
+
+    $("#submit-damagedOrderChoice").click(() => {
+        if ($("#damagedOrderChoice #money").attr('selected') == 'selected') {
+            window.location.href = '/warehouse/confirmedReturn.php?code=' + code + '&type=money&goon=false'
+        } else {
+            window.location.href = '/warehouse/confirmedReturn.php?code=' + code + '&type=product&goon=false'
+        }
+    });
+
+
+    $('#confirmed-return').click(() => {
+        window.location.href = '/warehouse/confirmedReturn.php?code=' + code + '&type=' + type + '&goon=true';
     });
 
 })();

@@ -1,3 +1,13 @@
+<?php 
+    $type = $_GET['type'];
+    $phrase = '';
+    if($type == "wrong_product") {
+        $phrase = 'La consegna di un <b>articolo errato</b> dev’essere reclamata entro <b>14 giorni</b> dalla consegna.'."\n".'Avresti dovuto pensarci prima!';
+    } else if($type == "damaged_product"){
+        $phrase = 'Il <b>danneggiamento dell’ordine</b> dev’essere reclamato entro <b>5 giorni</b> dalla consegna.'."\n".'Avresti dovuto pensarci prima!';
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -51,13 +61,13 @@
                 <div class="row">
                     <div class="col-12">
                         <p class="content-description">
-                            Sembra che il tuo ordine sia stato già consegnato, ti preghiamo di <b> metterti in contatto con un nostro operatore</b>. <br> Hai controllato bene dappertutto?
+                            <?php echo $phrase ?>
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.html'">
+                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.php'">
                             <span><b>Ah ok scusate</b></span>
                         </button>
                     </div>

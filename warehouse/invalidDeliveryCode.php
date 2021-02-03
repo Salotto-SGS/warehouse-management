@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-12">
                         <p class="content-description">
-                            Sembra che sui nostri server non sia presente un ordine associato al tuo profilo e al tuo <b>codice spedizione</b>... <br> Sicuro di avere inserito quello giusto?
+                            Sembra che sui nostri server non sia presente un ordine associato al <b>codice spedizione</b> inserito... <br> Sicuro di avere inserito quello giusto?
                         </p>
                     </div>
                 </div>

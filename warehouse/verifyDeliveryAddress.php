@@ -1,3 +1,39 @@
+<?php
+
+include './config/Database.php';
+include './models/Order.php';
+$database = new Database();
+$code = $_GET['code'];
+
+$address='';
+
+if (!empty($code)) {
+    $db = $database->connect();
+    $stmt = $db->prepare("SELECT COUNT(*) as total FROM `order` WHERE code=:userCode");
+    $stmt->bindParam(':userCode', $code, PDO::PARAM_STR);
+    $stmt->execute();
+    // Check if any categories
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if($row['total'] == '1'){
+
+            
+            $stmt = $db->prepare("SELECT `address`.`address` FROM `order` INNER JOIN `address` ON `order`.idAddress = `address`.idAddress WHERE code = :user_Code");
+            $stmt->bindParam(':user_Code', $code, PDO::PARAM_STR);
+            $stmt->execute();
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $address = $row['address'];
+            }
+        } else {
+            header('Location: invalidDeliveryCode.php');
+        }
+    }
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -41,7 +77,7 @@
             <p class="mb-1 mt-1 title">Il tuo ordine risulta essere <b>ancora in consegna</b>, nonostante siano passati più di 14 giorni. Ti preghiamo di <b>confermare</b> o <b>modificare</b> l’indirizzo di spedizione.</p>
             <p class="mb-1 mt-3 title2"><b>L'attuale indirizzo di consegna è:</b></p>
             <div class="card-body-header d-flex justify-content-center">
-                <p class="d-inline mt-2"><b>Via Gattamelata 65, Mestre (VE)</b></p>
+                <p class="d-inline mt-2"><b><?php echo $address ?></b></p>
             </div>
 
             <div class="row">

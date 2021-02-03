@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-12">
                         <p class="content-description">
-                            Per reclamare la <b>mancata consegna</b> dell’ordine è necessario attendere il passaggio di almeno <b>14 giorni dalla spedizione</b>. I nostri corrieri sono al lavoro 24 ore su 24 per consegnarti il pacco!
+                            Per procedere con il <b>reclamo</b> dell’ordine è necessario attendere il passaggio di almeno <b>14 giorni</b> dalla data in cui è stato effettuato l'ordine oppure attendere l'arrivo del pacco. I nostri corrieri sono al lavoro 24 ore su 24 per consegnarti l'ordine!
                         </p>
                     </div>
                 </div>

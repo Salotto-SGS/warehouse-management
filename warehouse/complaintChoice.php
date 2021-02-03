@@ -54,7 +54,7 @@ if (empty($code)) {
                     } else if ($row['name'] == 'consegnato') {
                         header('Location: alreadyDeliveredOrder.php');
                     } else if ($row['name'] == 'in consegna') {
-                        header('Location: verifyDeliveryAddress.php');
+                        header('Location: verifyDeliveryAddress.php?code='.$code);
                     } else if ($row['name'] == 'in restituzione' || $row['name'] == 'restituito') {
                         header('Location: alreadyResentOrder.php');
                     }
@@ -77,9 +77,9 @@ if (empty($code)) {
                     $interval = $date->diff($orderDate);
                     $elapsed = $interval->format('%a');
                     if ($elapsed > 14) {
-                        header('Location: lateRequest.php');
+                        header('Location: lateRequest.php?type=wrong_product');
                     } else {
-                        header('Location: wrongOrderChoice.php?type=');
+                        header('Location: wrongOrderChoice.php?code='.$code);
                     }
                 }
                 
@@ -105,9 +105,9 @@ if (empty($code)) {
                     $interval = $date->diff($orderDate);
                     $elapsed = $interval->format('%a');
                     if ($elapsed > 5) {
-                        header('Location: lateRequest.php');
+                        header('Location: lateRequest.php?type=damaged_product');
                     } else {
-                        header('Location: damagedOrderChoice.php?type=');
+                        header('Location: damagedOrderChoice.php?code='.$code);
                     }
                 }
                 

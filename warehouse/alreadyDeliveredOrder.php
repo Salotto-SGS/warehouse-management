@@ -35,7 +35,7 @@
 
     <div class="container" style="height: 100vh;">
         <div class="row content">
-            <div class="col-7"><img class="image" src="./assets/img/already-delivered-order.svg" alt="" draggable='false' "false"></div>
+            <div class="col-7"><img class="image" src="./assets/img/already-delivered-order.svg" alt="" draggable='false' ></div>
             <div class="col-5">
                 <div class="row">
                     <div class="col-12">

@@ -9,10 +9,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $code = $_POST['code'];
         
-        if (empty($code)) {
-            $message = "Non è stato inserito alcun codice!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }else{
+        if (!empty($code)) {
             $db = $database->connect();
             $stmt = $db->prepare("SELECT COUNT(*) as total FROM `order` WHERE code=:userCode");
             $stmt->bindParam(':userCode', $code, PDO::PARAM_STR);
@@ -70,7 +67,7 @@
             <p class="d-inline">Inserisci il tuo <b>codice spedizione</b></p>
             </div>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-            <input id="delivery-code" name="code" class="input mt-4 ml-4 mr-4 col-11" placeholder="Codice spedizione" type="text">
+            <input id="delivery-code" name="code" required class="input mt-4 ml-4 mr-4 col-11" placeholder="Codice spedizione" type="text">
             <button id="submit-delivery-code" type="submit" class="btn ml-4 mt-4 mb-5 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-6"><b>Sottoponi</b></button>
         </form>
 
