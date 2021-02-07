@@ -82,7 +82,8 @@ if (!empty($code)) {
 
             <div class="row">
                 <div class="col-12">
-                    <p class="mt-3 title">Se è sbagliato inserisci il nuovo indirizzo qua sotto e poi premi "<b>Conferma</b>"</p>
+                    <p class="mt-3 title">Se è sbagliato inserisci il nuovo indirizzo qua sotto e poi premi <span style="color:var(--first-color);">"<b>Conferma</b>"</span> </p>
+                    <p class="mt-3 title">In caso tontrario premi <span style="color:var(--first-color);"> "<b>Torna alla Home<b>"</span> </p> 
                 </div>
             </div>
 
@@ -93,7 +94,11 @@ if (!empty($code)) {
             </div>
             <div class="row">
                 <div class="col-12">
-                    <button id="submit-delivery-address" type="button" class="btn ml-4 mt-4 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-6 float-right"><b>Conferma</b></button>
+                    <button id="submit-delivery-address" class="button btn-light btn-secondary btn  mt-4 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-12 float-right"  onclick="window.location.href='newAddress.php'"
+                    ><b>Conferma</b></button>
+                    <button class="button btn btn-light btn-secondary  mt-4 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-12" onclick="window.location.href='deliveryCode.php'">
+                            <span><b>Torna alla home</b></span>
+                        </button>
                 </div>
             </div>
 

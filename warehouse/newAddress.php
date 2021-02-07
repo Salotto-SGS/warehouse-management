@@ -1,32 +1,3 @@
-<?php
-
-    include './config/Database.php';
-    include './models/Order.php';
-    $database = new Database();
-
-    $code = '';
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $code = $_POST['code'];
-        
-        if (!empty($code)) {
-            $db = $database->connect();
-            $stmt = $db->prepare("SELECT COUNT(*) as total FROM `order` WHERE code=:userCode");
-            $stmt->bindParam(':userCode', $code, PDO::PARAM_STR);
-            $stmt->execute();
-            // Check if any categories
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if($row['total'] == '1'){
-                    header('Location: complaintChoice.php?code='.$code.'&type=');
-                } else {
-                    header('Location: invalidDeliveryCode.php');
-                }
-            }
-        }
-    }
-    
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -52,7 +23,7 @@
     <meta property="twitter:description" cosntent="TODO">
     <meta property="twitter:image" content="TODO">
 
-    <title>Magazzino - Delivery Code</title>
+    <title>Magazzino - Verified Complaint</title>
     <link rel="shortcut icon" href="TODO" />
     <link rel="icon" href="assets/img/logo-salotto.png">
     <!-- CSS -->
@@ -60,21 +31,40 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body id="deliveryCode">
-    <div class="container">
-        <div class="card col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto pl-0 pr-0">
-        <div class="card-body-header">
-            <p class="d-inline">Inserisci il tuo <b>codice spedizione</b></p>
+<body id="newAddress">
+
+    <div class="container" style="height: 100vh;">
+        <div class="row content">
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="content-header">Nuovo indirizzo</h6>
+                        <hr class="content-line">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="content-title">Indirizzo cambiato</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="content-description">
+                            Il tuo <b>indirizzo di consegna</b> è stato <b>cambiato</b> con successo! <b>Riceverai</b> una <b>e-mail</b> non appena il tuo pacco giungerà a destinazione.
+                        </p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.php'">
+                            <span><b>Torna alla home</b></span>
+                        </button>
+                    </div>
+                </div>
             </div>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-            <input id="delivery-code" name="code" required class="input mt-4 ml-4 mr-4 col-11" placeholder="Codice spedizione" type="text">
-            <button id="submit-delivery-code" type="submit" class="btn ml-4 mt-4 mb-5 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-6"><b>Sottoponi</b></button>
-        </form>      
+            <div class="col-7"><img class="image" src="./assets/img/validated-resent.svg" alt="" draggable='false'></div>
         </div>
     </div>
-
-
-
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

@@ -26,6 +26,7 @@
                 $type = $_GET['type'];
                 $goOn = $_GET['goon'];
                 if($goOn == 'true') {
+
                     $delayReturn = rand(0,1) == 1; //TODO 
                     $valid = rand(0,1) == 1; //TODO
                 

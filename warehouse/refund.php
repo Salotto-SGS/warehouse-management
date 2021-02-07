@@ -57,7 +57,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.html'">
+                        <button class="button btn btn-light btn-secondary" onclick="window.location.href='deliveryCode.php'">
                             <span><b>Visita lo shop</b></span>
                             </button>
                     </div>
